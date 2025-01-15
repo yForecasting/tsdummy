@@ -1,13 +1,13 @@
-Package: tsdummy
-Title: Time Series Dummy Package
-Version: 0.0.1
+Package: tsuntangle
+Title: Time Series Untangle Package
+Version: 0.0.2
 Authors@R: 
       person(given = "Yves R.",
            family = "Sagaert",
            role = c("aut", "cre"),
            email = "yves.r.sagaert@gmail.com")
-Description: This package creates extra features and dummies for data
-      with a date information or in time series format.
+Description: This package creates clear formatting, extra features, 
+      dummies for data with a date information or in time series format.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
