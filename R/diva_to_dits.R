@@ -37,7 +37,29 @@ diva_to_dits <- function(file="", data="",
                          sep=";", start=c(1,1), frequency=1,
                          d="yearweek", i="sku",
                          v="real_sales"){
- return(0)
+  # Read data
+  if (file==""){
+    if (data==""){
+      stop("Input data is missing.")
+    }
+  } else {
+    if (methods::is(file,"data.frame")){
+      data <- file
+    } else {
+      data <- utils::read.csv(file,sep=sep)
+    }
+  }
+
+  # Untangle DIVA to DITS
+  dat <- data[,c(d,i,v)]
+  wide_data <- tidyr::pivot_wider(dat, names_from = i, values_from = v, values_fill = 0)
+  wide_data <- dplyr::arrange(wide_data, d)
+  wdat <- data.frame(wide_data)
+  rownames(wdat) <- wdat[,d]
+  wdat <- wdat[, -1]
+  tdat <- stats::ts(wdat,start=start,frequency=frequency)
+
+  return(tdat)
 
 
 }
